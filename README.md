@@ -1,7 +1,10 @@
 # littleoldvm #
 
 ## PREP WORK ##
-i* Ensure host machine has nfsd installed
+* Install VirtualBox Guest Additionals :
+    * vagrant gem install vagrant-vbguest
+    * C:\vagrant\vagrant\embedded\bin\gem.bat install vagrant-vbguest (if needed, a Window's workaround).
+    * vagrant vbguest --status
 
 ## SETUP VAGRANTFILE ##
 
