@@ -1,6 +1,10 @@
+# Local vagrant files
 .vagrant
 Vagrantfile
 
 # Vim tmp files
 *.swp
 *.swo
+
+# Local "me" directories
+provision/shell/files/etc/apache2/sites-available/me/
