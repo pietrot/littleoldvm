@@ -1,0 +1,6 @@
+.vagrant
+Vagrantfile
+
+# Vim tmp files
+*.swp
+*.swo
