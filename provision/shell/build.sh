@@ -97,7 +97,7 @@ php5 -v
 apt-get purge php7.*
 
 # Install some PHP extensions
-apt-get -y install php5.6-cli php5.6-common php5.6-curl php5.6-gd php5.6-intl php5.6-json php5.6-mcrypt php5.6-memcached php5.6-mysqlnd php5.6-xmlrpc php5.6-zip php5.6-mbstring
+apt-get -y install php5.6-cli php5.6-common php5.6-curl php5.6-gd php5.6-intl php5.6-json php5.6-mcrypt php5.6-memcached php5.6-mysqlnd php5.6-xmlrpc php5.6-zip php5.6-mbstring php5.6-xml
 phpenmod zip mbstring
 
 # @note PHP 5.5 ships with its own built-in opcache.
