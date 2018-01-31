@@ -4,8 +4,8 @@
 # TOOLS
 # apt-cache search {some-string}
 
-echo "Hostname : $1"
-
+#HOSTNAME="$1"
+HOSTNAME="littleoldvm"
 SCRIPT_PATH="/vagrant/provision/shell"
 
 # Update VM & add some needed apps & dependencies
