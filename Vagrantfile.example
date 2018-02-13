@@ -1,0 +1,65 @@
+# https://docs.vagrantup.com.
+
+VAGRANTFILE_VERSION = "2"
+HOSTNAME            = "{hostname}"
+SITES_DIR           = "{absolute-site-path}"
+
+Vagrant.configure(VAGRANTFILE_VERSION) do |config|
+
+  config.vbguest.auto_update = true
+  config.vbguest.no_remote   = false
+
+  config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
+
+  config.vm.define HOSTNAME do
+  end
+
+  # The Vagrant box used to configure the VM
+  # Provision fresh VM.
+  config.vm.box     = "ubuntu/xenial64"
+  #config.vm.box_url = ""
+  # Or, all-included.
+  #config.vm.box     = "littleoldvm"
+  #config.vm.box_url = "file://littleoldvm.box"
+  
+  # The hostname of the VM
+  config.vm.hostname = HOSTNAME
+
+  # Max bootup time (default is 300secs ~ 5mins)
+  config.vm.boot_timeout = 900
+
+  # Forwarding port(s)
+  # [NOTE] On Unix-based hosts (e.g. Linux, Solaris, Mac OS X) it is not possible
+  # to bind to ports below 1024 from apps that are not run by root. 
+  config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
+
+  # Network setup
+  config.vm.network "private_network", ip: "192.168.33.11"
+
+  # Shared folder(s)
+  # config.vm.synced_folder SITES_DIR, "/sites", :nfs => true, :mount_options => ['nolock,vers=3,udp,noatime']
+  config.vm.synced_folder SITES_DIR, "/sites"
+
+  # Configurations for VirtualBox
+  config.vm.provider "virtualbox" do |vb|
+    # VM name displayed in VirtualBox
+    vb.name = HOSTNAME
+
+    # Display the VirtualBox GUI when booting the machine
+    vb.gui = false
+ 
+    # Customize the amount of memory on the VM:
+    vb.memory = "2048"
+
+    # Customize the number of CPUs
+    vb.cpus = 1
+    
+    # Fix no internet issue
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+  end
+  
+  # Provision fresh VM.
+  config.vm.provision :shell, path: "provision/shell/build.sh", :args => "'" + HOSTNAME  + "'"
+
+end

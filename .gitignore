@@ -1,0 +1,10 @@
+# Local vagrant files
+.vagrant
+Vagrantfile
+
+# Vim tmp files
+*.swp
+*.swo
+
+# Log files
+*.log
